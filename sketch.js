@@ -175,43 +175,25 @@ function handlePlayerArrowCollision() {
       playerArrows[i].body,
       computerArcher.body
     );
-if(baseCollision.collided ||
-  computerArcherCollision.collided ||
-  computerCollision.collided){
-    computerArcherLife -= 1;
-      computer.reduceLife(computerArcherLife);
-      if (playerArcherLife <= 0) {
-        player.collapse = true;
-        Matter.Body.setStatic(playerArcher.body, false);
-        Matter.Body.setStatic(player.body, false);
-        Matter.Body.setPosition(player.body, {
-          x: width - 100,
-          y: computer.body.position.y
-        });
-      }
-  }
-
-    if (
-      baseCollision.collided ||
+    if(baseCollision.collided ||
       computerArcherCollision.collided ||
-      computerCollision.collided
-    ) {
-
-      playerArcherLife -= 1;
-      player.reduceLife(playerArcherLife);
-
-      if (computerArcherLife <= 0) {
-        computerArcher.collapse = true;
-        Matter.Body.setStatic(computerArcher.body, false);
-        Matter.Body.setStatic(computer.body, false);
-        Matter.Body.setPosition(computer.body, {
-          x: width - 100,
-          y: computer.body.position.y
-        });
-      }
-    }
+      computerCollision.collided){
+        computerArcherLife -= 1;
+          computer.reduceLife(computerArcherLife);
+          if (computerArcherLife <= 0) {
+            computerArcher.collapse = true;
+            Matter.Body.setStatic(computerArcher.body, false);
+            Matter.Body.setStatic(computer.body, false);
+            Matter.Body.setPosition(computer.body, {
+              x: width - 100,
+              y: computer.body.position.y
+            });
+          }
+  }
   }
 }
+
+  
 
 function handleComputerArrowCollision() {
   for (var i = 0; i < computerArrows.length; i++) {
@@ -232,8 +214,8 @@ function handleComputerArrowCollision() {
 
     if (
       baseCollision.collided ||
-      playerCollision.collided||
-      playerArcherCollision.collided
+      playerArcherCollision.collided||
+      playerCollision.collided
     ) {
       playerArcherLife -= 1;
       player.reduceLife(playerArcherLife);
@@ -249,3 +231,4 @@ function handleComputerArrowCollision() {
     }
   }
 }
+
